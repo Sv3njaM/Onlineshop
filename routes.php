@@ -44,6 +44,12 @@ if(strpos($route,'/login') !== false){
   exit();
 }
 
+//Directory for the Logout
+if(strpos($route,'/logout') !== false){
+  require_once __DIR__.'/actions/logout.php';
+  exit();
+}
+
 //Directory for adding a new product
 if(strpos($route,'/product/new') !== false){
   require_once __DIR__.'/actions/product.new.php';
