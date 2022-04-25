@@ -14,6 +14,9 @@ The products are shown on the start page (index.php).-->
     <a href="index.php/product/<?= $product['slug'] ?>" class="btn btn-primary btn-sm">Details</a>
     <!--the php after add/ add the product id to the string, needed for the routeParts in actions cart.add.php -->
     <a href="index.php/cart/add/<?php echo $product['id']?>" class="btn btn-success btn-sm">Add to Basket</a>
+    <!--check if Admin rights are available to edit a product-->
+    <?php if($isAdmin): ?>
     <a href="index.php/product/edit/<?= $product['slug']?>" class="btn btn-warning btn-sm">Edit</a>
+    <?php endif; ?>
   </div>
 </div>
