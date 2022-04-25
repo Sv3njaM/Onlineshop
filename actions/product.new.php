@@ -9,7 +9,8 @@ $description = "";
 $price = 0;
 $errors = [];
 $hasErrors = false;
-
+$flashMessages = flashMessage();
+$hasFlashMessages = count($flashMessages) > 0;
 //blocked Slugs are reserved words wich cant be used
 $blockedSlugs = ['new','delete','details','edit'];
 //if Post is true if a Post request is send and the $_SERVER['REQUEST_METHOD'] is set to post
@@ -58,7 +59,7 @@ if($hasErrors === false){
     $hasErrors = true;
   }
   if($created === true){
-    //flashMessage here
+    flashMessage('Product successfully processed!');
     header("Location: ".BASE_URL."index.php/product/new");
   }
 }

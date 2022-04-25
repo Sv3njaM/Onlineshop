@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Onlineshop</a>
+    <a class="navbar-brand" href="#">Home</a>
     <ul class="navbar-nav">
       <li class="nav-item">
         <?php if(isLoggedIn()): ?>

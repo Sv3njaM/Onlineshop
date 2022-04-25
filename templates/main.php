@@ -1,5 +1,6 @@
 <?php require_once __DIR__.'/header.php' ?>
 <section class="container">
+  <?php require_once __DIR__.'/flashMessage.php'; ?>
   <div class="row">
     <!--check if Admin rights are available to create a new product-->
     <?php if($isAdmin): ?>

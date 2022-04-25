@@ -25,6 +25,7 @@ is included in actions/product.edit.php ?>-->
         Edit Product
       </div>
       <div class="card-body">
+      <?php require_once __DIR__.'/flashMessage.php'; ?>
         <div class="form-group">
           <label for="productName">Product Name</label>
           <input type="text" name="productName" value="<?= escape($productName)?>" id="productName" class="form-control">

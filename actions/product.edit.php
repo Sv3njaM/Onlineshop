@@ -25,7 +25,9 @@ $price = $product['price'];
 $id = $product['id'];
 $errors = [];
 $hasErrors = false;
-
+$flashMessages = flashMessage();
+//counts if any flash messages are available
+$hasFlashMessages = count($flashMessages) > 0;
 //array for slug names wich are not allowed to use
 $blockedSlugs = ['new', 'delete', 'details', 'edit'];
 
@@ -75,7 +77,7 @@ if(isPost()){
       $hasErrors = true;
     }
     if($created === true ){
-      
+      flashMessage('Product successfully processed!');
       header("Location: ".BASE_URL."index.php/product/edit/".$slug);
     }
   }
