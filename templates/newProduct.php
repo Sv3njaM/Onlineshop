@@ -11,6 +11,7 @@ included in actions/product.new.php-->
       </div>
       <div class="card-body">
         <?php require_once __DIR__.'/flashMessage.php'; ?>
+        <?php require_once __DIR__.'/errorMessages.php' ?>
         <div class="form-group">
           <label for="productName">Product Name</label>
           <input class="form-control" type="text" name="productName" value="" id="productName">
