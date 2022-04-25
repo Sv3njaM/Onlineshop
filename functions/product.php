@@ -16,3 +16,20 @@ function getAllProducts(){
   }
   return $products;
 }
+
+//get a product slug out of the //DB
+function getProductBySlug(string $slug):?array{
+  $sql = "SELECT id,title,description,price,slug
+          FROM products
+          WHERE slug = :slug
+          LIMIT 1";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return null;
+  }
+  $statement->execute([':slug'=>$slug]);
+  if($statement->rowCount() === 0){
+    return null;
+  }
+  return $statement->fetch();
+}

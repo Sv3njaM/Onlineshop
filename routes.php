@@ -36,3 +36,12 @@ if(!$route){
     require_once __DIR__.'/actions/index.php';
     exit();
   }
+//Directory to edit an existing product
+if(strpos($route,'/product/edit') !== false){
+    require_once __DIR__.'/actions/product.edit.php';
+    exit();
+  }
+if(strpos($route,'/product') !== false){
+   require_once __DIR__.'/actions/product.php';
+   exit();
+ }
