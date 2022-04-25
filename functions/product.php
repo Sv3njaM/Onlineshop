@@ -51,3 +51,28 @@ function createNewProduct(string $productName, string $slug, string $description
   $lastId = getDB()->lastInsertId();
   return $lastId > 0;
 }
+
+//update an existing product in db
+function editProduct(int $id, string $productName, string $slug, string $description, int $price):bool{
+  $sql = "UPDATE products SET
+          title = :productName,
+          slug = :slug,
+          description = :description,
+          price = :price
+          WHERE id = :id
+          ";
+  $statement = getDB()->prepare($sql);
+  if(false === $statement){
+    return false;
+  }
+  $statement->execute([
+      ':id'=>$id,
+      ':productName'=>$productName,
+      ':slug'=>$slug,
+      ':description'=>$description,
+      ':price'=>$price
+
+  ]);
+  $rowCount = $statement->rowCount();
+  return $rowCount >= 0;
+}
