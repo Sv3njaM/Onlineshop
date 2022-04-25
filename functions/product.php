@@ -33,3 +33,21 @@ function getProductBySlug(string $slug):?array{
   }
   return $statement->fetch();
 }
+
+//insert a new product into DB
+function createNewProduct(string $productName, string $slug, string $description, int $price):bool{
+  $sql = "INSERT INTO products SET
+          title = :productName, slug = :slug, description = :description, price = :price";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+        ':productName'=>$productName,
+        ':slug'=>$slug,
+        ':description'=>$description,
+        ':price'=>$price
+  ]);
+  $lastId = getDB()->lastInsertId();
+  return $lastId > 0;
+}
