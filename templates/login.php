@@ -20,7 +20,7 @@ actions/login.php-->
         Login
       </div>
       <div class="card-body">
-        <?php require_once __DIR__.'/errorMessages.php' ?>
+        <?php require_once __DIR__.'/errorMessage.php' ?>
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" value="" id="username" class="form-control">
