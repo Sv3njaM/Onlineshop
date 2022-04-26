@@ -31,6 +31,7 @@ if($indexPHPPosition){
   $route = str_replace('index.php', '', $route);
 }
 $userId = getCurrentUserId();
+
 $countCartItems = countItemsInCart($userId);
 $cartSum = getCartSumForUserId($userId);
 //Standard directory if the route is not set direct to index.php
