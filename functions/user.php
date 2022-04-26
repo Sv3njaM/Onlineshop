@@ -80,8 +80,69 @@ function userIdExists(?int $userId):bool{
     return false;
   
   }
-  
+ 
+//check if the username exists in database
+function usernameExists(string $username):bool{
+  $sql = "SELECT * FROM user WHERE username=:username";
+  $statement = getDB()->prepare($sql);
+  if($statement){
+    return false;
+  }
+  $statement->execute([
+      ':username'=>$username
+  ]);
+  return (bool)$statement->fetchColumn();
+
+}  
+
+//check if the email already exists in database
+function emailExists(string $email):bool{
+  $sql = "SELECT * FROM user WHERE email=:email";
+  $statement = getDB()->prepare($sql);
+  if($statement){
+    return false;
+  }
+  $statement->execute([
+      ':email'=>$email
+  ]);
+  return (bool)$statement->fetchColumn();
+
+}
+
 //check in SESSION['userId'] if user is logged in if value exists
 function isLoggedIn():bool{
     return (isset($_SESSION['userId']) && userIdExists($_SESSION['userId']));
   }
+
+//create an account after Registration
+function createAccount(string $username, string $password, string $email):bool{
+  $password = password_hash($password, PASSWORD_DEFAULT);
+  $userRights = 'USER';
+  //check if there is already registrated user, if not the first get admin rights
+  if(getAccountsTotal() === 0){
+    $userRights = 'ADMIN';
+  }
+  $sql = "INSERT INTO user
+          SET username = :username,
+              password = :password,
+              email = :email,
+              activationKey = :activationKey,
+              userRights = :userRights";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $activationKey = getRandomHash(8);
+  $statement->execute([
+        ':username'=>$username,
+        ':password'=>$password,
+        ':email'=>$email,
+        ':activationKey'=>$activationKey,
+        ':userRights'=>$userRights
+  ]);
+  $affectedRows = $statement->rowCount();
+  if($affectedRows === 0){
+    return false;
+  }
+  return $affectedRows > 0;
+}

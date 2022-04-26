@@ -11,7 +11,7 @@
         <?php endif; ?>
       </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php/register">Registrate</a>
+          <a class="nav-link" href="index.php/registration">Registrate</a>
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">

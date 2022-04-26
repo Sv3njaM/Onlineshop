@@ -25,3 +25,16 @@ function logData(string $errorLevel, string $errorMessage, ?array $data = null){
     $logData .= str_repeat('*',100)."\n";
     file_put_contents($logFile,$logData,FILE_APPEND);
   }
+
+  function flashMessage(?string $message = null){
+    //check if Session variable is set else sets it
+    if(!isset($_SESSION['message'])){
+      $_SESSION['message'] = [];
+    }
+    if(!$message){
+      $messages = $_SESSION['message'];
+      $_SESSION['message'] = [];
+      return $messages;
+    }
+    $_SESSION['message'][] = $message;
+  }
