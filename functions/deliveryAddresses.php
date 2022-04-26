@@ -1,8 +1,8 @@
 <?php
 
-function saveDeliveryAddressForUser(int $userId, string $recipient, string $city, string $zipCode, string $street, string $streetNr, string $country = "DE"):int{
+function saveDeliveryAddressForUser(int $userId, string $recipient, string $city, string $zipCode, string $street, string $streetNr, string $country, string $countryCode = "DE"):int{
   $sql = "INSERT INTO delivery_addresses
-          SET user_id=:userId, recipient=:recipient, city=:city, zipcode=:zipCode, street=:street, streetnr=:streetNr, country=:country";
+          SET user_id=:userId, recipient=:recipient, city=:city, zipcode=:zipCode, street=:street, streetnr=:streetNr, country=:country, countryCode=:countryCode";
 
 
   $statement = getDB()->prepare($sql);
@@ -16,7 +16,8 @@ function saveDeliveryAddressForUser(int $userId, string $recipient, string $city
     ':zipCode'=>$zipCode,
     ':street'=>$street,
     ':streetNr'=>$streetNr,
-    ':country'=>$country
+    ':country'=>$country,
+    ':countryCode'=>$countryCode
   ]);
   return (int)getDB()->lastInsertId();
 }

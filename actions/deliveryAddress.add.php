@@ -14,6 +14,7 @@ redirectIfNotLoggedIn('/deliveryAddress/add');
   $zipCodeIsValid = true;
   $isPost = isPost();
   $errors = [];
+  //$deliveryAddressId = 0;
   $deliveryAddresses = getAllDeliveryAddressesForUser($userId);
   //$hasErrors = false;
   var_dump($userId);
@@ -59,18 +60,18 @@ redirectIfNotLoggedIn('/deliveryAddress/add');
     
     if(count($errors) === 0){
       $deliveryAddressId = saveDeliveryAddressForUser($userId,$recipient,$city,$zipCode,$street,$streetNr,$country);
+      var_dump($deliveryAddressId > 0);
+      var_dump($deliveryAddressId);
       if($deliveryAddressId > 0){
+        
         $_SESSION['deliveryAddressId'] = $deliveryAddressId;
+        
         flashMessage("Your address have been saved");
         header("Location: ".$baseUrl."index.php/selectPayment");
         exit();
       }
-      if($deliveryAddressId <= 0){
-        $errors[]="A problem appeared during saving. Address not saved";
-      }
-      
+      $errors[]="A problem appeared during saving. Address not saved"; 
     }
-    
   }
   $hasErrors = count($errors) > 0;
 
