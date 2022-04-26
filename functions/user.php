@@ -146,3 +146,14 @@ function createAccount(string $username, string $password, string $email):bool{
   }
   return $affectedRows > 0;
 }
+
+//check if it is the first user registrated at all
+function getAccountsTotal():?int{
+  $sql = "SELECT COUNT(user_id)
+          FROM user";
+  $statement = getDB()->query($sql);
+  if($statement === false){
+    return null;
+  }
+  return (int)$statement->fetchColumn();
+}

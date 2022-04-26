@@ -38,3 +38,12 @@ function logData(string $errorLevel, string $errorMessage, ?array $data = null){
     }
     $_SESSION['message'][] = $message;
   }
+
+  //creates a randomhash for the Registration
+function getRandomHash(int $length):string{
+  $randomInt = random_int(0, time());
+  $hash = md5($randomInt);
+  $start = random_int(0, strlen($hash)-$length);
+  $hashShort = substr($hash, $start, $length);
+  return $hashShort;
+}
