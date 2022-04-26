@@ -14,6 +14,11 @@
           <a class="nav-link" href="index.php/registration">Registrate</a>
         </li>
     </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="index.php/cart">Welcome <?= $userName ?></a>
+      </li>
+    </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a href="index.php/cart">Warenkorb</a>

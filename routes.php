@@ -31,6 +31,7 @@ if($indexPHPPosition){
   $route = str_replace('index.php', '', $route);
 }
 $userId = getCurrentUserId();
+$userName = getUserName($userId);
 //Standard directory if the route is not set direct to index.php
 if(!$route){
     require_once __DIR__.'/actions/index.php';

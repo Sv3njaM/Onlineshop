@@ -19,6 +19,19 @@ function getCurrentUserId():?int{
   return $userId;
 }
 
+function getUserName(int $userId):string{
+  $sql = "SELECT username FROM user WHERE user_id = :userId";
+  $result = getDB()->prepare($sql);
+  if($result === false){
+    return "Guest";
+  }
+  $result->execute([ ':userId'=>$userId]);
+  
+  $row = $result->fetch();
+  $userName = $row['username'];
+  return $userName;
+}
+
 //get the user information out of DB with the username
 function getUserDataForUsername(string $username):array{
     $sql = "SELECT user_id,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
