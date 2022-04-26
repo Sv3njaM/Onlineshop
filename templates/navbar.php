@@ -20,11 +20,8 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-        <a href="index.php/userData"><?= $userName ?></a>
-      </li>
       <li class="nav-item">
-        <a href="index.php/cart">Warenkorb(<?= $countCartItems; ?>)</a>
+        <a href="index.php/cart">My items(amount here)</a>
       </li>
       
     </ul>
