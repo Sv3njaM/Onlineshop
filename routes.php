@@ -62,6 +62,16 @@ if(strpos($route,'/logout') !== false){
   exit();
 }
 
+if(strpos($route,'/checkout') !== false){
+  require_once __DIR__.'/actions/checkout.php';
+  exit();
+}
+
+if(strpos($route,'/selectDeliveryAddress') !== false){
+  require_once __DIR__.'/actions/selectDeliveryAddress.php';
+  exit();
+}
+
 if(strpos($route,'/deliveryAddress/add') !== false){
   require_once __DIR__.'/actions/deliveryAddress.add.php';
   exit();

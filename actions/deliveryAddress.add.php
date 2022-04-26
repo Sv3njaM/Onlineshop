@@ -58,16 +58,19 @@ redirectIfNotLoggedIn('/deliveryAddress/add');
     }
     
     if(count($errors) === 0){
-      /*$deliveryAddressId = saveDeliveryAddressForUser($userId,$recipient,$city,$zipCode,$street,$streetNr,$country);
+      $deliveryAddressId = saveDeliveryAddressForUser($userId,$recipient,$city,$zipCode,$street,$streetNr,$country);
       if($deliveryAddressId > 0){
         $_SESSION['deliveryAddressId'] = $deliveryAddressId;
+        flashMessage("Your address have been saved");
         header("Location: ".$baseUrl."index.php/selectPayment");
         exit();
-      }*/
-      $errors[]="A problem appeared during saving. Address not saved";
+      }
+      if($deliveryAddressId <= 0){
+        $errors[]="A problem appeared during saving. Address not saved";
+      }
+      
     }
-    var_dump($userId);
-    var_dump($_SESSION['userId']);
+    
   }
   $hasErrors = count($errors) > 0;
 
