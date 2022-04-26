@@ -62,6 +62,11 @@ if(strpos($route,'/logout') !== false){
   exit();
 }
 
+if(strpos($route,'/deliveryAddress/add') !== false){
+  require_once __DIR__.'/actions/deliveryAddress.add.php';
+  exit();
+}
+
 //Directory for the Logout
 if(strpos($route,'/registration') !== false){
   require_once __DIR__.'/actions/registration.php';
