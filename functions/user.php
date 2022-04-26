@@ -19,6 +19,8 @@ function getCurrentUserId():?int{
   return $userId;
 }
 
+
+
 //get the user information out of DB with the username
 function getUserDataForUsername(string $username):array{
     $sql = "SELECT user_id,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
