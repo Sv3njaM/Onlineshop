@@ -21,7 +21,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="index.php/cart">My items(amount here)</a>
+        <a href="index.php/cart">My items(<?= $countCartItems; ?>)</a>
       </li>
       
     </ul>
