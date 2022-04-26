@@ -19,6 +19,7 @@ function getCurrentUserId():?int{
   return $userId;
 }
 
+<<<<<<< HEAD
 function getUserName(int $userId):string{
   $sql = "SELECT username FROM user WHERE user_id = :userId";
   $result = getDB()->prepare($sql);
@@ -31,6 +32,9 @@ function getUserName(int $userId):string{
   $userName = $row['username'];
   return $userName;
 }
+=======
+
+>>>>>>> 4bd9c02613a9f76e5533cbd4d6f39ced231a70b8
 
 //get the user information out of DB with the username
 function getUserDataForUsername(string $username):array{

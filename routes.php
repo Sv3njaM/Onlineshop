@@ -31,13 +31,28 @@ if($indexPHPPosition){
   $route = str_replace('index.php', '', $route);
 }
 $userId = getCurrentUserId();
+<<<<<<< HEAD
 $userName = getUserName($userId);
+=======
+
+$countCartItems = countItemsInCart($userId);
+$cartSum = getCartSumForUserId($userId);
+>>>>>>> 4bd9c02613a9f76e5533cbd4d6f39ced231a70b8
 //Standard directory if the route is not set direct to index.php
 if(!$route){
     require_once __DIR__.'/actions/index.php';
     exit();
   }
 
+if(strpos($route,'/cart/add') !== false){
+  require_once __DIR__.'/actions/cart.add.php';
+  
+  exit();
+}
+if(strpos($route, '/cart') !== false){
+  require_once __DIR__.'/actions/cart.php';
+  exit();
+}
 //Directory for the Login
 if(strpos($route,'/login') !== false){
   require_once __DIR__.'/actions/login.php';

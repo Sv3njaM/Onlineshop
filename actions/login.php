@@ -42,6 +42,7 @@ if($isPost){
   //if there are no errors then the logininformations are ok and the login can be set
   if(count($errors) === 0){
     $_SESSION['userId'] = (int)$userData['user_id'];
+    $_SESSION['userName'] = $userData['username'];
     //userRights to give rights for product edit or new
     $_SESSION['userRights'] = $userData['userRights'];
     $redirectTarget = $baseUrl.'index.php';
