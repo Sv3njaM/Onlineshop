@@ -22,13 +22,15 @@ function getCurrentUserId():?int{
 function getUserName(int $userId):string{
   $sql = "SELECT username FROM user WHERE user_id = :userId";
   $result = getDB()->prepare($sql);
-  if($result === false){
-    return "Guest";
-  }
+  
   $result->execute([ ':userId'=>$userId]);
   
   $row = $result->fetch();
+  
   $userName = $row['username'];
+  if($row === null){
+    return "";
+  }
   return $userName;
 }
 
