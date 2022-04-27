@@ -1,23 +1,4 @@
-<!--the editProduct.php is made for editing an existing product and
-is included in actions/product.edit.php ?>-->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Shop</title>
-    <base href="<?php echo $baseUrl; ?>">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-  </head>
-  <body>
-
-  <header class="jumbotron">
-    <div class="container">
-
-    </div>
-  </header>
-
+<?php include __DIR__.'/header.php'; ?> 
 <section class="container" id="newProduct">
   <form action="index.php/product/edit/<?= $slug ?>" method="post" enctype="multipart/form-data">
     <div class="card">
