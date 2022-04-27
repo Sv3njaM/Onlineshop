@@ -90,3 +90,37 @@ function getCartDataForProductId(int $productId, int $userId):array{
   return $row;
 
 }
+
+function changeQuantityInCart(int $productId, int $userId, int $quantity):bool{
+  $sql = "UPDATE cart
+          SET quantity = :quantity
+          WHERE user_id = :userId 
+          AND product_id = :productId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+      ':quantity'=>$quantity,
+      ':productId'=>$productId,
+      ':userId'=>$userId
+  ]);
+  $rowCount = $statement->rowCount();
+  return (bool)$rowCount > 0;
+}
+
+function deleteProductInCart(int $productId, int $userId):bool{
+  $sql = "DELETE FROM cart
+          WHERE user_id = :userId 
+          AND product_id = :productId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+      ':productId'=>$productId,
+      ':userId'=>$userId
+  ]);
+  $rowCount = $statement->rowCount();
+  return (bool)$rowCount > 0;
+}
