@@ -69,3 +69,24 @@ function getCartSumForUserId(?int $userId): int{
   }
   return (int)$result->fetchColumn();
 }
+
+function getCartDataForProductId(int $productId, int $userId):array{
+  $sql = "SELECT id, quantity, created 
+          FROM cart
+          WHERE product_id=:productId
+          AND user_id=:userId";
+  $statement = getDB()->prepare($sql);
+  if(!$statement){
+    return [];
+  }
+  $statement->execute([
+        ':productId'=>$productId,
+        ':userId'=>$userId
+  ]);
+  if($statement->rowCount() === 0){
+    return [];
+  }
+  $row = $statement->fetch();
+  return $row;
+
+}

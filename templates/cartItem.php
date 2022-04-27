@@ -10,8 +10,17 @@ where it is called in a loop -->
   <div><?= $cartItem['description']; ?></div>
   <!--insert the quantity and make it able to be changed--->
   <div><?= $cartItem['quantity'] ?></div>
-  
-  </div>
+  <form class="" action="index.php/cart" method="POST">
+    
+      
+    
+  <input type="text" name="product_id" value="<?= $cartItem['product_id'] ?>">
+      <input type="number" name="quantity" value="<?= $cartItem['quantity'] ?>">
+      
+    
+      <button class="btn btn-success" type="submit" name="button">change Quantity</button>
+    
+</form>
 </div>
 <div class="col-3 text-right">
 
