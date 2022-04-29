@@ -37,6 +37,13 @@ redirectIfNotLoggedIn('/selectPayment');
 
     if(count($errors) === 0){
       //part to call the function for the payment
+      $functionName = $paymentMethod.'createOrder';
+
+      //$_SESSION['paymentMethod'] = $paymentMethod;
+
+      //call_user_func_array create and call the function depending on the choosen payment
+      call_user_func_array($functionName,[$deliveryAddressData, $cartProducts]);
+    
     }
   }
   //$hasErrors in routes.php so it can be used in the template selectPayment.php
