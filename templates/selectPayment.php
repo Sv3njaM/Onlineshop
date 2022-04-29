@@ -8,7 +8,7 @@
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
-  <form method="POST" action="index.php/selectPayment" >
+  <form method="POST" action="index.php" >
     <?php foreach($availablePaymentMethods as $value => $text): ?>
     <div class="form-check">
       <input type="radio" class="form-check-input" name="paymentMethod" id="payment<?=$text?>" value="<?=$value?>">

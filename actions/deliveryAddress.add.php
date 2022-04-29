@@ -67,7 +67,7 @@ redirectIfNotLoggedIn('/deliveryAddress/add');
         $_SESSION['deliveryAddressId'] = $deliveryAddressId;
         
         flashMessage("Your address have been saved");
-        header("Location: ".$baseUrl."index.php/selectPayment");
+        header("Location: ".$baseUrl."index.php/confirmOrder");
         exit();
       }
       $errors[]="A problem appeared during saving. Address not saved"; 

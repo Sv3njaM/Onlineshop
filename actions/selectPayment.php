@@ -1,6 +1,6 @@
 <?php
 
-redirectIfNotLoggedIn('/selectPayment');
+redirectIfNotLoggedIn('/confirmOrder');
 
   if(!isset($_SESSION['deliveryAddressId'])){
     header("Location: ".$baseUrl."index.php/selectDeliveryAddress");
@@ -49,4 +49,4 @@ redirectIfNotLoggedIn('/selectPayment');
   //$hasErrors in routes.php so it can be used in the template selectPayment.php
   $hasErrors = count($errors) > 0;
 
-  require TEMPLATES_DIR.'/selectPayment.php';
+  require TEMPLATES_DIR.'/confirmOrder.php';
