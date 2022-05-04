@@ -1,62 +1,25 @@
 <?php
 
-function createUserOrderInDB($userId, array $cartItems, array $deliveryAddressData, string $orderStatus = 'new'):int{
-    $sql = "INSERT INTO oders SET
-            order_status=:orderStatus,
-            orderDate=:orderDate,
-            user_id=:userId,
-            delivery_address_id=:deliveryAddressId,
-            payment_method=:paymentMethod,
-            payment_status=:paymentStatus";
-    $statement = getDB()->prepare($sql);
-    if($statement === false){
-        echo printDBErrorMessage;
-        return 0;
-    }
-    $created = $statement->execute([
-        ':orderStatus'=>$orderStatus,
-        ':orderDate'=>date('Y-m-d H:i:s'),
+function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartItems, string $orderStatus = 'new'):int{
+    foreach($cartItems as $cartItem){
+      $data = [
         ':userId'=>$userId,
-        ':deliveryAddressId'=>$deliveryAddressId,
-        ':paymentMethod'=>$paymentMethod,
-        ':paymentStatus'=>$paymentStatus
-    ]);
-    $orderId = getDB()->lastInsertId();
-    return $orderId;
-    /*
-  $sql = "INSERT INTO orders SET
-          order_status = :orderStatus,
-          orderDate = :orderDate,
-          deliveryDate = :deliveryDate,
-          user_id = :userId
-      ";
-  $statement = getDB()->prepare($sql);
-  if(false === $statement){
-    echo printDBErrorMessage;
-    return false;
-  }
-  $data = [
-        ':orderStatus'=>$orderStatus,
         ':orderDate'=>date('Y-m-d H:i:s'),
-        ':deliveryDate'=>'0000-00-00',
-        ':userId'=>$userId
-  ];
-  $created = $statement->execute($data);
-  if(false === $created){
-    echo printDBErrorMessage;
-    return false;
-  }
-  $orderId = getDB()->lastInsertId();
-  invoiceId($orderId);
-  $sql = "INSERT INTO order_addresses SET
-          order_id = :orderId,
-          address_id = :addressId";
-  $statement = getDB()->prepare($sql);
-  if(false === $statement){
-    echo printDBErrorMessage;
-    return false;
-  }
-
+        ':deliveryAddressId'=>$deliveryAddressId,
+        ':productId'=>$cartItems['product_id'],
+        ':orderQuantity'=>$cartItems['quantity'],
+        ':orderStatus'=>$orderStatus
+      ];
+      $created = $statement->execute($data);
+      if(false === $created){
+        echo printDBErrorMessage;
+        break;
+      }
+    }
+  
+  
+  
+/*
   $data = [
         ':orderId'=>$orderId,
         ':recipient'=>$deliveryAddressData['recipient'],

@@ -25,7 +25,7 @@ redirectIfNotLoggedIn('/confirmOrder');
     if($paymentMethod && !in_array($paymentMethod, array_keys($availablePaymentMethods))){
       $errors[] = "Incorrect choice";
     }
-    $deliveryAddressData = getDeliveryAddressForUser($_SESSION['deliveryAddressId'], getCurrentUserId());
+    $deliveryAddressData = getDeliveryAddressForUser(getCurrentUserId(), $_SESSION['deliveryAddressId']);
     if(!$deliveryAddressData){
       $errors[] = "Delivery Address not found";
     }

@@ -1,6 +1,6 @@
 <?php
-echo "page confirm Order";
 redirectIfNotLoggedIn('/checkout');
+$errors = [];
 /*
   if(!isset($_SESSION['paymentMethod'])){
     //header("Location: ".$baseUrl."index.php/selectPayment");
@@ -9,42 +9,34 @@ redirectIfNotLoggedIn('/checkout');
   }*/
   $userId = getCurrentUserId();
   $cartItems = getCartItemsForUserId($userId);
-/*
-  $functionName = $_SESSION['paymentMethod'].'PaymentComplete';
-  $parameter = [];
-  if($_SESSION['paymentMethod'] === 'paypal'){
-    $parameter = [
-          $_SESSION['paypalOrderToken']
-    ];
-  }*/
+  
+  $deliveryAddresses = getAllDeliveryAddressesForUser($userId);
+  $deliveryAddressId = $_SESSION['deliveryAddressId'];
+  $deliveryAddress = getDeliveryAddressForUser($userId, 0);
 
-  //call_user_func_array($functionName,$parameter);
-  /*if(!isset($_SESSION['deliveryAddressId'])){
-    header("Location: ".$baseUrl."index.php/");
-    exit();
+  if(isPost()){
+    $deliveryAddressData = getDeliveryAddressForUser(getCurrentUserId(), $_SESSION['deliveryAddressId']);
+    if(!$deliveryAddressData){
+      $errors[] = "Delivery Address not found";
+    }
+    $cartProducts = getCartItemsForUserId(getCurrentUserId());
+    if(count($cartProducts) === 0 ){
+      $errors[] = "No items in basket";
+    }
+    if(count($errors) === 0){
+      $created = createUserOrderInDB($userId, $paymentMethod, $cartItems, $deliveryAddressData);
+      if($created){
+        require TEMPLATES_DIR.'/thankYouPage.php';
+        exit();
+      }
+      if(!$created){
+        $errors[] = "A problem appeared, order not saved";
+      }
+      var_dump($created);
+    }
+    $hasErrors = count($errors) > 0;
   }
-
-  $deliveryAddressData = getDeliveryAddressForUser($_SESSION['deliveryAddressId'], $userId);
-
-
-  $created = createUserOrderInDB($userId,  $cartItems, $deliveryAddressData);
-
-  if($created){
-    clearCartForUser($userId);
-    $invoiceId = invoiceId();
-    $invoiceUrl = $projectUrl.'/invoice/'.$invoiceId;
-    createPdfFromUrl($invoiceUrl, STORAGE_DIR.'/invoices/invoice-'.$invoiceId.'.pdf');
-    require TEMPLATES_DIR.'/thankYouPage.php';
-    exit();
-  }
-*/
-  $deliveryAddressData = getDeliveryAddressForUser($_SESSION['deliveryAddressId'], $userId);
-  /*if(createUserOrderInDB($userId,$cartItems,$deliveryAddressData)){
-    clearCartForUser($userId);
-    $invoiceId = invoiceId();
-    $invoiceUrl = $projectUrl.'index.php/invoice/'.$invoiceId;
-   */
-   
+  
   require TEMPLATES_DIR.'/confirmOrder.php';
     //require TEMPLATES_DIR.'/thankYouPage.php';
     //exit();
