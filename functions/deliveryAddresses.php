@@ -22,7 +22,7 @@ function saveDeliveryAddressForUser(int $userId, string $recipient, string $city
   return (int)getDB()->lastInsertId();
 }
 
-function getDeliveryAddressForUser( int $userId, ?int $deliveryAddressId):array{
+function getDeliveryAddressForUser( int $userId, ?int $deliveryAddressId = null):array{
   if(!$deliveryAddressId){
     $sql = "SELECT id,recipient,city,street,streetNr,zipCode,country,countryCode
           FROM delivery_addresses

@@ -43,9 +43,7 @@ cartItem.php wich is included here-->
         </div>
       </div>
     </div>
-  <section class="container" id="selectDeliveryAddress">
-    <?php require_once __DIR__.'/deliveryAddressList.php'; ?>
-  </section>  
+  
   <section class="container" id="orderItemList">
     <?php require_once __DIR__.'/orderItemList.php'; ?>
   </section>
@@ -59,10 +57,10 @@ cartItem.php wich is included here-->
     <!--Part to choose an address for delivery-->
     <!--This part is for confirm the order-->
     <div class="row">
-      <div class="col-3">
-        <a class="btn btn-danger" href="index.php">Cancel</a>
-        <a class="btn btn-success" href="index.php/completeOrder">Confirm Order</a>
-      </div>
+    <form action="index.php/confirmOrder" method="post">
+      <a class="btn btn-danger" href="index.php">Cancel</a>  
+      <button class="btn btn-success" type="submit">Confirm Order</button>
+    </form>
     </div>
   </section>
 

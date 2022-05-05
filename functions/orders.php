@@ -1,75 +1,53 @@
 <?php
 
-function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartItems, string $orderStatus = 'new'):int{
+function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartItems):?int{
+  
+    $orderStatus = "NEW";
+    $paymentStatus = "OPEN";
+    $orderDate = date('Y-m-d H:i:s');
+    $sql = "INSERT INTO orders SET
+            order_status = :orderStatus,
+            order_date = :orderDate,
+            user_id = :userId,
+            delivery_address_id = :deliveryAddressId,
+            payment_status = :paymentStatus
+            ";
+    $statement = getDB()->prepare($sql);
+    
+    $created = $statement->execute([
+            ':orderStatus'=>$orderStatus,
+            ':orderDate'=>$orderDate,
+            ':userId'=>$userId,
+            ':deliveryAddressId'=>$deliveryAddressId,
+            ':paymentStatus'=>$paymentStatus
+    ]);
+    if($created === false){
+      echo printDBErrorMessage;
+      return false;
+    }
+    
+    $orderId = getDB()->lastInsertId('id');
+    
+    /*$sql = "INSERT INTO order_products SET
+            product_id = :product_id,
+            order_id = :order_id,
+            quantity = :quantity";
     foreach($cartItems as $cartItem){
       $data = [
-        ':userId'=>$userId,
-        ':orderDate'=>date('Y-m-d H:i:s'),
-        ':deliveryAddressId'=>$deliveryAddressId,
-        ':productId'=>$cartItems['product_id'],
-        ':orderQuantity'=>$cartItems['quantity'],
-        ':orderStatus'=>$orderStatus
+            ':product_id'=>$cartItem['product_id'],
+            ':order_id'=>$orderId,
+            ':quantity'=>$cartItem['quantity']
       ];
+      $statement = getDB()->prepare($sql);
       $created = $statement->execute($data);
-      if(false === $created){
+      if($created === false){
         echo printDBErrorMessage;
         break;
       }
-    }
-  
-  
-  
-/*
-  $data = [
-        ':orderId'=>$orderId,
-        ':recipient'=>$deliveryAddressData['recipient'],
-        ':city'=>$deliveryAddressData['city'],
-        ':street'=>$deliveryAddressData['street'],
-        ':streetNr'=>$deliveryAddressData['streetNr'],
-        ':zipCode'=>$deliveryAddressData['zipCode']
-  ];
-  $created = $statement->execute($data);
-  if(false === $created){
-    echo printDBErrorMessage;
-    return false;
-  }
-
-  $sql = "INSERT INTO orderProducts SET
-          title = :title,
-          quantity = :quantity,
-          price = :price,
-          taxInPercent = :taxInPercent,
-          order_id = :orderId,
-          user_id = :userId
-      ";
-  $statement = getDB()->prepare($sql);
-  if(false === $statement){
-    echo printDBErrorMessage;
-    return false;
-  }
-  //loop needs a break if something is wrong to jump out
-  foreach($cartItems as $cartItem){
-    $taxInPercent = 19;
-    $price = $cartItem['price'];
-    $netPrice = (1.0 - ($taxInPercent/100))*$price;
-    $data = [
-      ':title'=>$cartItem['title'],
-      ':quantity'=>$cartItem['quantity'],
-      ':price'=>$netPrice,
-      ':taxInPercent'=>19,
-      ':orderId'=>$orderId,
-      ':userId'=>$userId
-    ];
-    $created = $statement->execute($data);
-    if(false === $created){
-      echo printDBErrorMessage;
-      break;
-    }
-  }
-  //return not just true but the boolean of the loop, if programm comes to
-  //the loop and finish it $created is true else it is false
-  return $created;
-  */
+    }*/
+    logData("INFO",$orderId);
+    
+    return $orderId;
 }
 
 function getOrderSumForUser(int $orderId, int $userId):?array{
