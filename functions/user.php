@@ -35,16 +35,16 @@ function getUserName(int $userId):string{
 }
 
 //get the user information out of DB with the username
-function getUserDataForUsername(string $username):array{
+function getUserDataForUsername(string $userName):array{
     $sql = "SELECT user_id,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
             FROM user
-            WHERE username = :username";
+            WHERE username = :userName";
     $statement = getDB()->prepare($sql);
     if(!$statement){
       return [];
     }
     $statement->execute([
-          ':username'=>$username
+          ':userName'=>$userName
     ]);
     if($statement->rowCount() === 0){
       return [];

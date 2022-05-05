@@ -8,4 +8,5 @@ logData('INFO','Startpage have been called',[
     'productList'=>$products
 ]);
 
+
 require TEMPLATES_DIR.'/main.php';

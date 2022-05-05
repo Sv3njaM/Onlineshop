@@ -10,7 +10,7 @@ redirectIfNotLoggedIn('/selectDeliveryAddress');
   $deliveryAddressId = (int)$routeParts[2];
   if(deliveryAddressBelongToUser($deliveryAddressId, $userId)){
     $_SESSION['deliveryAddressId'] = $deliveryAddressId;
-    header("Location: ".$baseUrl."index.php/selectPayment");
+    header("Location: ".$baseUrl."index.php/confirmOrder");
     exit();
 
   }

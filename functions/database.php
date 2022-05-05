@@ -3,7 +3,7 @@
 
 function getDB(){
   static $db;
-  if($db instanceof POD){
+  if($db instanceof PDO){
     return $db;
   }
   require_once CONFIG_DIR.'/database.php';
