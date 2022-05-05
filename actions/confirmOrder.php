@@ -20,19 +20,16 @@
     if(count($errors) === 0){
       
       $created = createUserOrderInDB($userId, $deliveryAddressId, $cartItems);
-      /*if($created){
-        //require TEMPLATES_DIR.'/thankYouPage.php';
-        //exit();
+      if($created){
+        require TEMPLATES_DIR.'/thankYouPage.php';
+        exit();
       }
       if(!$created){
         $errors[] = "A problem appeared, order not saved";
-      }*/
-      var_dump($created);
+      }
+      
     }
     $hasErrors = count($errors) > 0;
   }
-  //var_dump($errors);
   require TEMPLATES_DIR.'/confirmOrder.php';
-    //require TEMPLATES_DIR.'/thankYouPage.php';
-    //exit();
-//}
+    

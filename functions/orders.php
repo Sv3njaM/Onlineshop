@@ -28,7 +28,7 @@ function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartIte
     
     $orderId = getDB()->lastInsertId('id');
     
-    /*$sql = "INSERT INTO order_products SET
+    $sql = "INSERT INTO order_products SET
             product_id = :product_id,
             order_id = :order_id,
             quantity = :quantity";
@@ -44,10 +44,8 @@ function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartIte
         echo printDBErrorMessage;
         break;
       }
-    }*/
-    logData("INFO",$orderId);
-    
-    return $orderId;
+    }
+    return $created;
 }
 
 function getOrderSumForUser(int $orderId, int $userId):?array{
