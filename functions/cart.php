@@ -69,3 +69,61 @@ function getCartSumForUserId(?int $userId): int{
   }
   return (int)$result->fetchColumn();
 }
+
+function getCartDataForProductId(int $productId, int $userId):array{
+  $sql = "SELECT id, quantity, created 
+          FROM cart
+          WHERE product_id=:productId
+          AND user_id=:userId";
+  $statement = getDB()->prepare($sql);
+  if(!$statement){
+    return [];
+  }
+  $statement->execute([
+        ':productId'=>$productId,
+        ':userId'=>$userId
+  ]);
+  if($statement->rowCount() === 0){
+    return [];
+  }
+  $row = $statement->fetch();
+  return $row;
+
+}
+
+function changeQuantityInCart(int $productId, int $userId, int $quantity):bool{
+  $sql = "UPDATE cart
+          SET quantity = :quantity
+          WHERE user_id = :userId 
+          AND product_id = :productId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+      ':quantity'=>$quantity,
+      ':productId'=>$productId,
+      ':userId'=>$userId
+  ]);
+  $rowCount = $statement->rowCount();
+  return (bool)$rowCount > 0;
+}
+
+function deleteProductInCart(int $productId, int $userId):bool{
+ logData("Info", "Start function delete");
+ $sql = "DELETE FROM cart
+          WHERE user_id = :userId 
+          AND product_id = :productId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+      ':productId'=>$productId,
+      ':userId'=>$userId
+  ]);
+  $rowCount = $statement->rowCount();
+  $return = (bool)$rowCount > 0;
+  logData("Info", "return of delete function = ".$return);
+  return $return;
+}
