@@ -1,4 +1,4 @@
-<?php include __DIR__.'/header.php'; ?> 
+<?php require_once __DIR__.'/header.php'?>
 <section id="newProduct" class="container">
   <form action="index.php/product/new" method="post">
     <div class="card">

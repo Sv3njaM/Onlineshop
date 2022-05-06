@@ -1,7 +1,7 @@
-<?php include __DIR__.'/header.php'; ?> 
+<?php require_once __DIR__.'/header.php'?>
   <section class="container" id="cartItems">
     <div class="row">
-      <h2>Shopping Basket</h2>
+      
       <hr>
     </div>
     <div class="row cartItemHeader">

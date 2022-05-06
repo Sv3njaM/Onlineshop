@@ -1,5 +1,5 @@
 <?php
-
+$headline = "Registration Area";
 $username = "";
 $email = "";
 $emailRepeat = "";

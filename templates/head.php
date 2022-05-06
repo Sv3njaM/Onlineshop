@@ -6,15 +6,17 @@
     <title>Test Online Shop</title>
     <base href="<?php echo $baseUrl; ?>">
 <style>
-  <?php include 'assets/css/bootstrap.min.css'; ?>
-  <?php include 'assets/css/styles.css'; ?>
-  <?php include 'assets/css/all.css'; ?>
+  <?php //include 'assets/css/bootstrap.min.css'; ?>
+  <?php //include 'assets/css/styles.css'; ?>
+  <?php //include 'assets/css/all.css'; ?>
 </style>
-<!--
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+<!---->
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/bootstrap.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    
     <link rel="stylesheet" type="text/css" href="assets/css/all.css">
--->
+
 </head>
 <body>  
   
