@@ -1,0 +1,43 @@
+#cartItems .cartItem{
+  border-bottom: 1px solid #ddd;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+}
+
+#cartItems .cartItemHeader{
+  border-bottom: 1px solid #ddd;
+
+}
+
+#cartItems .cartItem .productPicture{
+  width: 50%;
+  height: auto;
+}
+
+ .price{
+  font-weight: bold;
+  color: red;
+}
+
+
+.total{
+  font-weight: bold;
+}
+
+#products #newProduct a{
+ font-size: 5em;
+}
+
+.card{
+  margin-bottom: 1em;
+}
+
+.card.DRAFT{
+  border: 1px solid red;
+}
+
+h1{
+  margin-top: 10opx;
+  margin-bottom: 10px;
+}
