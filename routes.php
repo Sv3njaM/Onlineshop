@@ -90,11 +90,11 @@ if(strpos($route,'/paymentComplete') !== false){
   require_once __DIR__.'/actions/paymentComplete.php';
   exit();
 }
-*/
+
 if(strpos($route,'/confirmOrder') !== false){
   require_once __DIR__.'/actions/confirmOrder.php';
   exit();
-}
+}*/
 
 //Directory for the Logout
 if(strpos($route,'/registration') !== false){
