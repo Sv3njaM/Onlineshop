@@ -20,20 +20,6 @@
   color: red;
 }
 
-.pdf-container{
-  width: 21cm;
-  height: 29.7cm;
-  position: relative;
-  z-index: 1;
-}
-
-.pdf-container section#products table tfoot td[colspan]{
-  text-align: right;
-}
-
-.pdf-container section#products table tfoot .total{
-  font-weight: bold;
-}
 
 .total{
   font-weight: bold;
@@ -49,4 +35,9 @@
 
 .card.DRAFT{
   border: 1px solid red;
+}
+
+h1{
+  margin-top: 10opx;
+  margin-bottom: 10px;
 }

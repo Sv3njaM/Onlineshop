@@ -1,4 +1,4 @@
-<?php include __DIR__.'/header.php';?>
+<?php require_once __DIR__.'/header.php'?>
 <section class="container" id="loginForm">
   <form action="index.php/login" method="post">
     <div class="card">

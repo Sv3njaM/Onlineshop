@@ -1,4 +1,5 @@
-<?php include __DIR__.'/header.php'; ?> <section class="container" id="productDetails">
+<?php require_once __DIR__.'/header.php'?> 
+<section class="container" id="productDetails">
   <div class="card">
     <div class="card-header">
       <h2><?= $product['title']?></h2>

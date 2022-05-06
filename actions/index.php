@@ -1,4 +1,5 @@
 <?php
+$headline = "Welcome to the Onlineshop";
 $isAdmin = isAdmin();
 $products = getAllProducts();
 $flashMessages = flashMessage();

@@ -1,5 +1,5 @@
 <?php
-
+$headline = "Address Area";
 redirectIfNotLoggedIn('/selectDeliveryAddress');
   /*if(!isLoggedIn()){
     $_SESSION['redirectTarget'] = $baseUrl.'index.php/checkout';

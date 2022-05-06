@@ -1,6 +1,7 @@
 <!--The Programming to show the products on the cart, starting when called
 in the routes.php-->
 <?php
+$headline = "Your cart";
 $cartItems = getCartItemsForUserId($userId);
 $cartSum = getCartSumForUserid($userId);
 $productId = "";
