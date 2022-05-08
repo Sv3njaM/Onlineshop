@@ -23,7 +23,7 @@
       </div>
 
       <div class="row">
-        <a href="index.php/confirmOrder" class="btn btn-primary col-12">Buy Now</a>
+        <a href="index.php/checkout" class="btn btn-primary col-12">Buy Now</a>
       </div>
     </div>
   </section>

@@ -4,7 +4,7 @@
 </section>
 
 <section class="container" id="newDeliveryAddress">
-  <?php require_once __DIR__.'/deliveryAddressForm.php'; ?>
+  <?php require_once __DIR__.'/deliveryAddress.php'; ?>
 </section>
 
 
