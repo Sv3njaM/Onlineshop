@@ -1,5 +1,6 @@
 <?php
 //redirectIfNotLoggedIn('/checkout');
+  $headline = "Confirm your order";
   $errors = [];
   $userId = getCurrentUserId();
   $cartItems = getCartItemsForUserId($userId);

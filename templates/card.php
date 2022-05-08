@@ -2,8 +2,9 @@
 in the shop and is called in a loop and is included in the main.php.
 The products are shown on the start page (index.php).-->
 <div class="card <?= $product['product_status'] ?>">
-  <div class="card-title <?= $product['title'] ?>"></div>
-  <img src="storage/productPictures/not-found.jpg" alt="<?= $product['slug']?>">
+  <div class="card-header"> <strong><?= $product['title'] ?></strong></div>
+  <div class="card"><img src="storage/productPictures/not-found.jpg" alt="<?= $product['slug']?>"></div>
+  
   <div class="card-body">
     <?= $product['description'] ?>
     <hr>

@@ -3,7 +3,7 @@ in the routes.php-->
 <?php
 //sets $isPost to  $_SERVER['REQUEST_METHOD']
 $isPost = isPost();
-
+$headline = "Login Area";
 $userName = "";
 $password = "";
 $errors = [];

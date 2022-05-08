@@ -1,8 +1,4 @@
-<!--newProduct.php to create a new product and add it into the database
-included in actions/product.new.php-->
-
-<?php include __DIR__.'/header.php' //css shown in networkanalysis but not on page?>
-
+<?php require_once __DIR__.'/header.php'?>
 <section id="newProduct" class="container">
   <form action="index.php/product/new" method="post">
     <div class="card">
