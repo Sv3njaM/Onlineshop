@@ -7,11 +7,11 @@ $url = $urlParts['path'];
 $https = $_SERVER['REQUEST_SCHEME'] === 'https';
 //$indexPHPPosition: position where index.php starts
 $indexPHPPosition = strpos($url, 'index.php');
-//sets the baseUrl to '/Testshop/'
+//sets the baseUrl to '/Onlineshop/'
 $baseUrl = $url;
 
 if($indexPHPPosition){
-  //sets the baseUrl to '/Testshop/'
+  //sets the baseUrl to '/Onlineshop/'
   $baseUrl = substr($url,0,$indexPHPPosition);
 }
 //put a / in the end of the baseUrl if missing else the route would be wrong
@@ -22,6 +22,12 @@ if(substr($baseUrl, -1) !== '/'){
 define('BASE_URL', $baseUrl);
 //sets the projectUrl to 'http://localhost/Testshop/'
 $projectUrl = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$baseUrl;
+
+$redirectTarget = $baseUrl.'index.php';
+$_SESSION['redirectTarget'] = BASE_URL.'index.php';
+    if(isset($_SESSION['redirectTarget'])){
+      $redirectTarget = $_SESSION['redirectTarget'];
+    }
 
 //declare the route variable for later navigation
 $route = null;

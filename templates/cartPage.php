@@ -1,23 +1,6 @@
 <!--the card page shows all articles, amount, price and total price
 the user have added to the cart, the single products come from the
 cartItem.php wich is included here-->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Shop</title>
-    <base href="<?php echo $baseUrl; ?>">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-  </head>
-  <body>
-
-  <header class="jumbotron">
-    <div class="container">
-
-    </div>
-  </header>
   <?php include __DIR__.'/header.php' //css shown in networkanalysis but not on page?>
   <section class="container" id="cartItems">
     <div class="row">

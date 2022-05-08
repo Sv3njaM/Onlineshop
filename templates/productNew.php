@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test Online Shop</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/all.css">
-  </head>
-  <body>
-  <?php include __DIR__.'/navbar.php';?>
-<header class="jumbotron">
-  <div class="container">
-    <h1>Welcome to the Test Shop</h1>
-  </div>
-</header>
+<?php include __DIR__.'/header'; ?>
+
 <section id="newProduct" class="container">
   <form action="index.php/product/new" method="post">
     <div class="card">
