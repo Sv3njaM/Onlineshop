@@ -1,3 +1,4 @@
+<!--Template with a form for creating a new product and add it to the shop-->
 <?php include __DIR__.'/header.php'?>
 
 <section id="newProduct" class="container">

@@ -1,3 +1,4 @@
+<!--Template with a form to insert a new delivery address-->
 <form action="index.php/deliveryAddress/add" method="POST">
   <div class="card">
     <div class="card-header">

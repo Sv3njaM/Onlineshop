@@ -1,6 +1,5 @@
-<!--cartItems.php is like card.php a html construct wich gives out the
-products a user have add to the cart and is included in cartPage.php
-where it is called in a loop -->
+<!--orderConfirmItem.php is like the cartItems called in a loop in page
+templates/checkout.php to show all items the user have in cart -->
 <div class="col-3">
   <img class="productPicture" src="storage/productPictures/not-found.jpg" alt="<?= $cartItem['slug']?>">
 </div>

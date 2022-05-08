@@ -1,3 +1,4 @@
+<!--Template to show all addresses for the user from DB-->
 <div class="row">
   <?php foreach($deliveryAddresses as $deliveryAddress):?>
     <div class="col-3">

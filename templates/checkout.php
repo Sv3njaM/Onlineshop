@@ -1,6 +1,5 @@
-<!--the card page shows all articles, amount, price and total price
-the user have added to the cart, the single products come from the
-cartItem.php wich is included here-->
+<!--Template for checkout wich shows the items in cart and the main address
+for the delivery-->
   <?php include __DIR__.'/header.php' //css shown in networkanalysis but not on page?>
 
   <!--This part shows the items wich needed to be confirmed to be bought-->

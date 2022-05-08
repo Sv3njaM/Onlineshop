@@ -63,8 +63,6 @@ if(isPost()){
       }
     }
 }//end isPost
-var_dump($_SESSION['redirectTarget']);
-echo "------------";
-var_dump($baseUrl);
+
 //to show the newProduct.php when route is index.php/product/new
 require_once TEMPLATES_DIR.'/newProduct.php';

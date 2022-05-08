@@ -1,3 +1,5 @@
+<!--Template main.php is shown as start page and gives out all informations
+wich are supposed on that page-->
 <?php require_once __DIR__.'/header.php' ?>
 <section class="container">
   <?php require_once __DIR__.'/flashMessage.php'; ?>

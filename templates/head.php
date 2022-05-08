@@ -1,3 +1,5 @@
+<!--The head have all the informations needed for the html and is
+included in the header-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
