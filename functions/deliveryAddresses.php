@@ -22,15 +22,17 @@ function saveDeliveryAddressForUser(int $userId, string $recipient, string $city
   return (int)getDB()->lastInsertId();
 }
 
-function getDeliveryAddressForUser( int $userId, ?int $deliveryAddressId = null):array{
-  if(!$deliveryAddressId){
+function getDeliveryAddressForUser( int $userId, ?int $deliveryAddressId = 0):array{
+  if($deliveryAddressId === 0){
+    logData("INFO","in first choice part: ".$deliveryAddressId);
     $sql = "SELECT id,recipient,city,street,streetNr,zipCode,country,countryCode
           FROM delivery_addresses
           WHERE user_id = :userId
           AND first_choice = 1
           LIMIT 1";
   }
-  if($deliveryAddressId){
+  if($deliveryAddressId >0){
+    logData("INFO","in part with deliveryAddressId: ".$deliveryAddressId);
     $sql = "SELECT id,recipient,city,street,streetNr,zipCode,country,countryCode
           FROM delivery_addresses
           WHERE user_id = :userId

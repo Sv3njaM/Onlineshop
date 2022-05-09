@@ -5,6 +5,7 @@
       <h2>Shopping Basket</h2>
       <hr>
     </div>
+    <?php if(isLoggedIn()): ?>
     <div class="col-3">
       <div class="card">
         <div class="card-body">
@@ -18,11 +19,15 @@
           <p class="country">
           <?= $deliveryAddress['countryCode']?> <?= $deliveryAddress['country'];?>
           </p>
-        <a class="card-link" href="index.php/selectDeliveryAddress; ?>">Change</a>
+          <a class="card-link" href="index.php/selectDeliveryAddress/<?=$deliveryAddressId?>">Change</a>
         </div>
       </div>
     </div>
-  
+    <?php endif; ?>
+    <?php if(!isLoggedIn()):?>
+      Part to fill out an address if not logged in
+      <?php require_once __DIR__.'/deliveryAddressForm.php';?>
+    <?php endif; ?>
   <section class="container" id="orderItemList">
     <?php require_once __DIR__.'/orderItemList.php'; ?>
   </section>
@@ -36,13 +41,13 @@
     <!--Part to choose an address for delivery-->
     <!--This part is for confirm the order-->
     <div class="row">
-    <form action="index.php/confirmOrder" method="post">
+    <form action="index.php/checkout" method="post">
       <a class="btn btn-danger" href="index.php">Cancel</a>  
       <button class="btn btn-success" type="submit">Confirm Order</button>
     </form>
     </div>
   </section>
-
+</section>
 <?php //require_once __DIR__.'/footer.php' ?>
 <script src="assets/js/bootstrap.bundle.js"></script>
  </body>

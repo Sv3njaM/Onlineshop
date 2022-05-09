@@ -9,7 +9,7 @@ The products are shown on the start page (index.php).-->
     <?= $product['description'] ?>
     <hr>
     <!--price is in cent in the DB and need to be changed to be shown with comma-->
-    <?= number_format($product['price']/100,2,","," ") ?>
+    <?= number_format($product['price']/100,2,","," ") ?>€
   </div>
   <div class="card-footer">
     <a href="index.php/product/<?= $product['slug'] ?>" class="btn btn-primary btn-sm">Details</a>

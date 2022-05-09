@@ -1,7 +1,7 @@
 <?php
 
 function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartItems):?int{
-  
+    logData("INFO","Delivery Id in function createOrder: ".$deliveryAddressId);
     $orderStatus = "NEW";
     $paymentStatus = "OPEN";
     $orderDate = date('Y-m-d H:i:s');
