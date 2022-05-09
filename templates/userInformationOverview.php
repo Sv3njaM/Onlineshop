@@ -21,7 +21,7 @@
   </form>
 </section>
 <section id="userInformation" class="container">
-  <form class="" action="index.php/registration" method="POST">
+  <form class="" action="index.php/userInformation" method="POST">
     <div class="card">
       <div class="card-header">
         Personal Data

@@ -32,17 +32,38 @@ $newPassword = "";
 $repeatPassword = "";
 $errors = [];
 $hasErrors = false;
-$aktuellPassword = "";
+$currentPassword = "";
 if(isPost()){
     $oldPassword = filter_input(INPUT_POST, 'oldPassword');
     $newPassword = filter_input(INPUT_POST, 'newPassword');
     $repeatPassword = filter_input(INPUT_POST, 'repeatPassword');
-    $aktuellPassword = getPasswordForUser($userId, $oldPassword);
-    //check if aktuell and old password match
-    //check if old password is not empty
-    //check if new is not empty
-    //check if repeat is not empty
-    //check if new and password repeat are the same
+    $currentPassword = getPasswordForUser($userId, $oldPassword);
+    var_dump($currentPassword);
+    if(!password_verify($oldPassword, $currentPassword)){
+        $errors[] = "The old passsword dont match";
+    }
+    if(!(bool)$oldPassword){
+        $errors[] = "Old password is not allowed to be empty";
+    }
+    if(!(bool)$newPassword){
+        $errors[] = "New password is not allowed to be empty";
+    }
+    if(!(bool)$repeatPassword){
+        $errors[] = "Repeat password is not allowed to be empty";
+    }
+    if($newPassword !== $repeatPassword){
+        $errors[] = "The new password and the password repeat dont match";
+    }
+
+    if(count($errors) === 0 AND $currentPassword !== $newPassword){
+        $created = changePasswordForUser($userId, $oldPassword, $newPassword);
+        if($created){
+            flashMessage("Password successfully changed!");
+        }
+        if(!$created){
+            $errors[] = "A Problem have occured, password not changed!";
+        }
+    }
     //chek if old and new password dont match each other
     //update in db if no errors 
 }//end if isPost

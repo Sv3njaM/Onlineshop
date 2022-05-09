@@ -125,6 +125,15 @@ function emailExists(string $email):bool{
 
 }
 
+//get the password from database
+function getPasswordForUser(int $userId, string $oldPassword):string{
+  $sql = getDB()->prepare("SELECT password FROM user WHERE user_id=:userId");
+  $sql->execute([':userId'=>$userId]);
+  $result = $sql->fetchColumn();
+  return $result;
+
+}
+
 //check in SESSION['userId'] if user is logged in if value exists
 function isLoggedIn():bool{
     return (isset($_SESSION['userId']) && userIdExists($_SESSION['userId']));
@@ -172,4 +181,22 @@ function getAccountsTotal():?int{
     return null;
   }
   return (int)$statement->fetchColumn();
+}
+
+function changePasswordForUser(int $userId, string $oldPassword, string $newPassword):bool{
+  $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+  $sql = "UPDATE user SET password = :newPassword WHERE user_id = :userId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+    ':newPassword'=>$newPassword,    
+    ':userId'=>$userId
+  ]);
+  $affectedRows = $statement->rowCount();
+  if($affectedRows === 0){
+    return false;
+  }
+  return $affectedRows > 0;
 }
