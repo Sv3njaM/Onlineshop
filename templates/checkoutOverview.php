@@ -19,7 +19,7 @@
           <p class="country">
           <?= $deliveryAddress['countryCode']?> <?= $deliveryAddress['country'];?>
           </p>
-          <a class="card-link" href="index.php/selectDeliveryAddress">Change</a>
+          <a class="card-link" href="index.php/selectDeliveryAddress/<?=$deliveryAddressId?>">Change</a>
         </div>
       </div>
     </div>

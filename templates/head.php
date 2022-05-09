@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test Online Shop</title>
+    <title>Online Shop</title>
     <base href="<?php echo $baseUrl; ?>">
 <style>
   <?php //include 'assets/css/bootstrap.min.css'; ?>

@@ -1,34 +1,25 @@
 <?php
+
   redirectIfNotLoggedIn('/login');
-  var_dump(isLoggedIn());
   $headline = "Confirm your order";
   $deliveryAddressId = 0;
-  $errors = [];
+  $routeParts = explode('/',$route);
+  //DeliveryAddressId is 0 at start to choose the standard address from DB
+  //with change it can be selected from available addresses in DB
+  if(count($routeParts) === 3){
+    $deliveryAddressId = $routeParts[2];
+  }
+  
+  $_SESSION['deliveryAddressId'] = $deliveryAddressId;
   $userId = getCurrentUserId();
+  $deliveryAddress = getDeliveryAddressForUser($userId, $deliveryAddressId);
   $cartItems = getCartItemsForUserId($userId);
+  
+  $errors = [];
   $hasErrors = count($errors) > 0;
-  $deliveryAddress = [];
-  $recipient = "";
-  $city = "";
-  $street = "";
-  $streetNr = "";
-  $zipCode = "";
-  $country = "";
-  /*if($_SESSION['deliveryAddressId']){
-    $deliveryAddressId = $_SESSION['deliveryAddressId'];
-  }*/
-  
-  
-    $deliveryAddress = getDeliveryAddressForUser($userId);
-    $deliveryAddressId = $deliveryAddress['id'];
-    $_SESSION['deliveryAddressId'] = $deliveryAddressId;
-  
-    //$deliveryAddresses = getAllDeliveryAddressesForUser($userId);
 
   if(isPost()){
     
-
-
     if(!$deliveryAddress){
       $errors[] = "Delivery Address not found";
     }
@@ -51,4 +42,5 @@
     $hasErrors = count($errors) > 0;
   }
   require TEMPLATES_DIR.'/checkoutOverview.php';
+  
     
