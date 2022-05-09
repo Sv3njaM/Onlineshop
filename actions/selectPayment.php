@@ -1,5 +1,5 @@
 <?php
-
+/*
 redirectIfNotLoggedIn('/checkout');
 
   if(!isset($_SESSION['deliveryAddressId'])){
@@ -50,3 +50,4 @@ redirectIfNotLoggedIn('/checkout');
   $hasErrors = count($errors) > 0;
 
   require TEMPLATES_DIR.'/checkout.php';
+  */

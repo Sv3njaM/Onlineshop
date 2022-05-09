@@ -1,25 +1,34 @@
 <?php
-
+   //logData("INFO","Start loggin in begin of actions/checkout");
   redirectIfNotLoggedIn('/login');
+  
   $headline = "Confirm your order";
   $deliveryAddressId = 0;
+  if($_SESSION['deliveryAddressId']){
+    $deliveryAddressId = $_SESSION['deliveryAddressId'];
+  }
+  $userId = getCurrentUserId();
+  
   $routeParts = explode('/',$route);
-  //DeliveryAddressId is 0 at start to choose the standard address from DB
-  //with change it can be selected from available addresses in DB
+  
   if(count($routeParts) === 3){
     $deliveryAddressId = $routeParts[2];
+    $_SESSION['deliveryAddressId'] = $deliveryAddressId;
+    //logData("INFO","from routeParts sessionid: ".$_SESSION['deliveryAddressId']);
+  }
+  $deliveryAddress = getDeliveryAddressForUser($userId, $deliveryAddressId);
+  if($deliveryAddressId === 0 AND !$_SESSION['deliveryAddressId']){
+    $deliveryAddressId = $deliveryAddress['id'];
+    $_SESSION['deliveryAddressId'] = $deliveryAddressId;
+    //logData("INFO","after function getDeliveryAddress sessionid: ".$_SESSION['deliveryAddressId']);
   }
   
-  $_SESSION['deliveryAddressId'] = $deliveryAddressId;
-  $userId = getCurrentUserId();
-  $deliveryAddress = getDeliveryAddressForUser($userId, $deliveryAddressId);
   $cartItems = getCartItemsForUserId($userId);
-  
   $errors = [];
   $hasErrors = count($errors) > 0;
-
+  //logData("INFO","Start logging BEVOR POST order AddressId: ".$deliveryAddressId."----------------sessionid: ".$_SESSION['deliveryAddressId']);
   if(isPost()){
-    
+    //logData("INFO","Start logging AFTER POST order AddressId: ".$deliveryAddressId."----------------sessionid: ".$_SESSION['deliveryAddressId']);
     if(!$deliveryAddress){
       $errors[] = "Delivery Address not found";
     }
@@ -28,8 +37,9 @@
       $errors[] = "No items in basket";
     }
     if(count($errors) === 0){
-      
+      //logData("INFO","Start logging BEVOR FUNCTION order AddressId: ".$deliveryAddressId."----------------");
       $created = createUserOrderInDB($userId, $deliveryAddressId, $cartItems);
+      //logData("INFO","Start logging AFTER FUNCTION order AddressId: ".$deliveryAddressId."----------------");
       if($created){
         require TEMPLATES_DIR.'/thankYouPage.php';
         exit();
