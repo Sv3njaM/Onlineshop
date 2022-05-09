@@ -41,6 +41,7 @@
       $created = createUserOrderInDB($userId, $deliveryAddressId, $cartItems);
       //logData("INFO","Start logging AFTER FUNCTION order AddressId: ".$deliveryAddressId."----------------");
       if($created){
+        emptyCart($userId);
         require TEMPLATES_DIR.'/thankYouPage.php';
         exit();
       }
@@ -51,6 +52,7 @@
     }
     $hasErrors = count($errors) > 0;
   }
+  $countCartItems = countItemsInCart($userId);
   require TEMPLATES_DIR.'/checkoutOverview.php';
   
     

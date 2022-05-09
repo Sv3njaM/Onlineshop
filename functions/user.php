@@ -36,7 +36,7 @@ function getUserName(int $userId):string{
 
 //get the user information out of DB with the username
 function getUserDataForUsername(string $userName):array{
-    $sql = "SELECT user_id,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
+    $sql = "SELECT user_id,password,email,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
             FROM user
             WHERE username = :userName";
     $statement = getDB()->prepare($sql);
@@ -57,7 +57,8 @@ function getUserDataForUsername(string $userName):array{
     if($userId === null){
       return [];
     }
-    $sql = "SELECT username,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),id) AS customerId,activationKey,userRights
+    //
+    $sql = "SELECT username,password,email,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
             FROM user
             WHERE user_id = :userId";
     $statement = getDB()->prepare($sql);
@@ -65,9 +66,9 @@ function getUserDataForUsername(string $userName):array{
       return [];
     }
     $statement->execute([
-          ':user_id'=>$userId
+          ':userId'=>$userId
     ]);
-    if($statement->rowCount === 0){
+    if($statement->rowCount() === 0){
       return [];
     }
     $row = $statement->fetch();

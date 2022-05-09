@@ -86,6 +86,11 @@ if(strpos($route,'/registration') !== false){
   exit();
 }
 
+if(strpos($route,'/userInformation') !== false){
+  require_once __DIR__.'/actions/userInformation.php';
+  exit();
+}
+
 //Directory for adding a new product
 if(strpos($route,'/product/new') !== false){
   require_once __DIR__.'/actions/product.new.php';

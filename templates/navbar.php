@@ -16,7 +16,7 @@
     </ul>
     <ul class="navbar-nav" id="username">
       <li class="nav-item">
-        <a class="nav-link" href="index.php/cart">Welcome <?= $userName ?></a>
+        <a class="nav-link" href="index.php/userInformation">Welcome <?= $userName ?></a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

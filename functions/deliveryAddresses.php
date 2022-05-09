@@ -59,7 +59,7 @@ function getDeliveryAddressForUser( int $userId, ?int $deliveryAddressId = 0):ar
 }
 
 function getAllDeliveryAddressesForUser(int $userId):array{
-  $sql = "SELECT id,recipient,city,street,streetNr,zipCode,country,countryCode
+  $sql = "SELECT id,recipient,city,street,streetNr,zipCode,country,countryCode,first_choice
           FROM delivery_addresses
           WHERE user_id = :userId";
 
@@ -78,6 +78,13 @@ function getAllDeliveryAddressesForUser(int $userId):array{
   return $addresses;
 }
 
+function getStandardAddressId($userId):int{
+  $sql = getDB()->prepare("SELECT id FROM delivery_addresses WHERE first_choice = 1 AND user_id = :userId");
+  $sql->execute([':userId'=>$userId]);
+  $id = $sql->fetchColumn();
+  return $id;
+}
+
 function deliveryAddressBelongToUser(int $deliveryAddressId, int $userId):bool{
   $sql = "SELECT id
           FROM delivery_addresses
@@ -91,5 +98,25 @@ function deliveryAddressBelongToUser(int $deliveryAddressId, int $userId):bool{
         ':userId'=>$userId,
         ':deliveryAddressId'=>$deliveryAddressId
   ]);
+  return (bool)$statement->rowCount();
+}
+
+function changeStandardAddressId(int $userId, int $oldId, int $newId):bool{
+  $sql = "UPDATE delivery_addresses 
+  SET first_choice = 0 
+  WHERE user_id = :userId AND id = :oldId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  if($statement){
+    $sql = "UPDATE delivery_addresses 
+    SET first_choice = 1 
+    WHERE user_id = :userId AND id = :newdId";
+    $statement = getDB()->prepare($sql);
+    if($statement === false){
+      return false;
+    }
+  }
   return (bool)$statement->rowCount();
 }
