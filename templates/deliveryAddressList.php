@@ -3,6 +3,7 @@
     <div class="col-3">
       <div class="card">
         <div class="card-body">
+          <!--for showing the standard addres in userInformation, else it is not needed to be seen-->
           <?php if($deliveryAddress['first_choice'] === 1):?>
             <div class="card-header">Standard Address</div>
           <?php endif;?>

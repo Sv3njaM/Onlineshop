@@ -1,5 +1,5 @@
 <?php
-
+/*still need some changes to change own informations and template*/
 redirectIfNotLoggedIn('/login');
 $standardAddressId = 0;
 $oldStandardAdressId = 0;
@@ -8,7 +8,7 @@ if(count($routeParts) === 3){
     $standardAddressId = $routeParts[2];
     $oldStandardAddressId = getStandardAddressId($userId);
 }
-//echo "old: ".$oldStandardAddressId." / new: ".$standardAddressId;
+
 if($oldStandardAdressId !== $standardAddressId
     AND $oldStandardAdressId !== NULL And $oldStandardAdressId !== 0
     AND $standardAddressId !== NULL AND $standardAddressId !== 0){
@@ -19,13 +19,13 @@ $userId = getCurrentUserId();
 $hasErrors = false;
 $templatePath = "/Onlineshop/index.php/userInformation";
 $userInfo = true;
-//echo $userId;
+
 $userData = getUserDataForUserId($userId);
 $deliveryAddresses = getAllDeliveryAddressesForUser($userId);
-//var_dump($deliveryAddresses);
+
 $username = $userData['username'];
 $email = $userData['email'];
-//var_dump($_SERVER['PHP_SELF']);
+
 
 $oldPassword = "";
 $newPassword = "";
@@ -64,8 +64,7 @@ if(isPost()){
             $errors[] = "A Problem have occured, password not changed!";
         }
     }
-    //chek if old and new password dont match each other
-    //update in db if no errors 
+    
 }//end if isPost
 $hasErrors = count($errors) > 0;
 require TEMPLATES_DIR.'/userInformationOverview.php';
