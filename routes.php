@@ -1,7 +1,7 @@
 <?php
-//$urlParts gives out 'path' => string '/Testshop/index.php' (length=19)
+/*routes.php navigate through the files depends on the value of $routes */
 $urlParts = parse_url($_SERVER['REQUEST_URI']);
-//$url C:\xampp\htdocs\Testshop\routes.php:7:string '/Testshop/index.php' (length=19)
+
 $url = $urlParts['path'];
 
 $https = $_SERVER['REQUEST_SCHEME'] === 'https';

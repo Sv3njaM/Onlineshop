@@ -1,4 +1,6 @@
 <?php
+/*
+Not in use at the moment. Changed checkout to first confirm and insert in database.
 
 redirectIfNotLoggedIn('/checkout');
   //redirectIfNotLoggedIn('/login');
@@ -23,4 +25,4 @@ redirectIfNotLoggedIn('/checkout');
   $deliveryAddresses = getAllDeliveryAddressesForUser($userId);
 
   require TEMPLATES_DIR.'/selectDeliveryAddress.php';
-  
+  */

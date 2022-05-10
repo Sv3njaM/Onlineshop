@@ -1,5 +1,5 @@
 <?php
-
+/*All functions for delivery addresses like get, change or insert an address */
 function saveDeliveryAddressForUser(int $userId, string $recipient, string $city, string $zipCode, string $street, string $streetNr, string $country, string $countryCode = "DE"):int{
   $sql = "INSERT INTO delivery_addresses
           SET user_id=:userId, recipient=:recipient, city=:city, zipcode=:zipCode, street=:street, streetnr=:streetNr, country=:country, countryCode=:countryCode";

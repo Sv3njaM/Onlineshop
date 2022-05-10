@@ -1,4 +1,4 @@
-<!--All functions wich are needed to run the programms proper like a log
+<!--All functions needed to run the programms proper or are helpful like a logData
 and flashmessages-->
 <?php
 //function isPost gives a true back if a post message is send after a button is pressed

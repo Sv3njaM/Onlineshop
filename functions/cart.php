@@ -1,5 +1,5 @@
-<!--function/cart.php stores all functions wich are important to run
-everything from the cart like add a product, get items for a user, the sum of Items
+<!--function/cart.php stores all functions important to run
+everything from cart like add a product, get items for a user, the sum of Items
 delete and so on-->
 <?php
 //add a product into the DB in table cart with the userid for showing in basket

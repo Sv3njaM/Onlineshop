@@ -1,8 +1,9 @@
-<!--The Programming to create a new product and save it in the database,
- starting when called
-in the routes.php-->
 <?php
-//later only with admin rights
+//Adming rights to create a new product needed
+if(false === isAdmin()){
+  echo "Access denied";
+  exit();
+}
 $productName = "";
 $slug = "";
 $description = "";

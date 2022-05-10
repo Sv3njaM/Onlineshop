@@ -1,5 +1,5 @@
 <?php require_once __DIR__.'/header.php' ?>
-
+<!--Not in use at the moment. First when payment is integrated-->
 <section class="container" id="selectPaymentMethod">
   <?php if($hasErrors): ?>
     <ul class="alert alert-danger">

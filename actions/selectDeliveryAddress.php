@@ -16,11 +16,7 @@ $userId = getCurrentUserId();
   $countryIsValid = true;
   $isPost = isPost();
   $errors = [];
-  /*if(!isLoggedIn()){
-    $_SESSION['redirectTarget'] = $baseUrl.'index.php/checkout';
-    header("Location: ".$baseUrl."index.php/login");
-    exit();
-  }*/
+  
   $routeParts = explode('/',$route);
   var_dump($routeParts);
   $deliveryAddressId = (int)$routeParts[0];

@@ -1,9 +1,9 @@
-<!--The Programming to edit an exitsting product, starting when called
-in the routes.php-->
 <?php
-//check if user have admin status to edit a product
-//--------------------
-
+//Admin rights to edit a product needed
+if(false === isAdmin()){
+  echo "Access denied";
+  exit();
+}
 $routeParts = explode('/',$route);
 
 if(count($routeParts) !== 4){
