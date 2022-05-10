@@ -108,9 +108,9 @@ function changeQuantityInCart(int $productId, int $userId, int $quantity):bool{
   $rowCount = $statement->rowCount();
   return (bool)$rowCount > 0;
 }
-
+//function for the user to delete single products in cart
 function deleteProductInCart(int $productId, int $userId):bool{
- logData("Info", "Start function delete");
+ 
  $sql = "DELETE FROM cart
           WHERE user_id = :userId 
           AND product_id = :productId";
@@ -127,3 +127,21 @@ function deleteProductInCart(int $productId, int $userId):bool{
   logData("Info", "return of delete function = ".$return);
   return $return;
 }
+//function to empty cart fully
+function emptyCart(int $userId):bool{
+ 
+  $sql = "DELETE FROM cart
+           WHERE user_id = :userId";
+   $statement = getDB()->prepare($sql);
+   if($statement === false){
+     return false;
+   }
+   $statement->execute([
+       ':userId'=>$userId
+   ]);
+   $rowCount = $statement->rowCount();
+   $return = (bool)$rowCount > 0;
+   logData("Info", "return of delete function = ".$return);
+   return $return;
+ }
+

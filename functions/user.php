@@ -36,7 +36,7 @@ function getUserName(int $userId):string{
 
 //get the user information out of DB with the username
 function getUserDataForUsername(string $userName):array{
-    $sql = "SELECT user_id,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
+    $sql = "SELECT user_id,password,email,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
             FROM user
             WHERE username = :userName";
     $statement = getDB()->prepare($sql);
@@ -57,7 +57,8 @@ function getUserDataForUsername(string $userName):array{
     if($userId === null){
       return [];
     }
-    $sql = "SELECT username,password,CONCAT_WS('-','KD',SUBSTRING(username,0,3),id) AS customerId,activationKey,userRights
+    //
+    $sql = "SELECT username,password,email,CONCAT_WS('-','KD',SUBSTRING(username,0,3),user_id) AS customerId,activationKey,userRights
             FROM user
             WHERE user_id = :userId";
     $statement = getDB()->prepare($sql);
@@ -65,9 +66,9 @@ function getUserDataForUsername(string $userName):array{
       return [];
     }
     $statement->execute([
-          ':user_id'=>$userId
+          ':userId'=>$userId
     ]);
-    if($statement->rowCount === 0){
+    if($statement->rowCount() === 0){
       return [];
     }
     $row = $statement->fetch();
@@ -124,6 +125,15 @@ function emailExists(string $email):bool{
 
 }
 
+//get the password from database
+function getPasswordForUser(int $userId, string $oldPassword):string{
+  $sql = getDB()->prepare("SELECT password FROM user WHERE user_id=:userId");
+  $sql->execute([':userId'=>$userId]);
+  $result = $sql->fetchColumn();
+  return $result;
+
+}
+
 //check in SESSION['userId'] if user is logged in if value exists
 function isLoggedIn():bool{
     return (isset($_SESSION['userId']) && userIdExists($_SESSION['userId']));
@@ -171,4 +181,22 @@ function getAccountsTotal():?int{
     return null;
   }
   return (int)$statement->fetchColumn();
+}
+
+function changePasswordForUser(int $userId, string $oldPassword, string $newPassword):bool{
+  $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+  $sql = "UPDATE user SET password = :newPassword WHERE user_id = :userId";
+  $statement = getDB()->prepare($sql);
+  if($statement === false){
+    return false;
+  }
+  $statement->execute([
+    ':newPassword'=>$newPassword,    
+    ':userId'=>$userId
+  ]);
+  $affectedRows = $statement->rowCount();
+  if($affectedRows === 0){
+    return false;
+  }
+  return $affectedRows > 0;
 }
