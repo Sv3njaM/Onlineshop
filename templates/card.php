@@ -1,5 +1,5 @@
 <!--The card.php in templates is a html construct to show a single element
-in the shop and is called in a loop and is included in the main.php.
+in the shop and is called in a loop and included in the main.php.
 The products are shown on the start page (index.php).-->
 <div class="card <?= $product['product_status'] ?>">
   <div class="card-header"> <strong><?= $product['title'] ?></strong></div>

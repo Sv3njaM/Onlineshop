@@ -1,7 +1,7 @@
 <?php
 
-redirectIfNotLoggedIn('/checkout');
-  //redirectIfNotLoggedIn('/login');
+redirectIfNotLoggedIn('/login');
+
 
   $recipient = "";
   $city = "";

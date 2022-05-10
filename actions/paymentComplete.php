@@ -1,4 +1,6 @@
 <?php
+/*
+Not in use at the moment, will be put in later
 
 redirectIfNotLoggedIn('/checkout');
   if(!isset($_SESSION['paymentMethod'])){
@@ -14,3 +16,4 @@ redirectIfNotLoggedIn('/checkout');
     $_SESSION['paypalOrderToken'] = filter_input(INPUT_GET, 'token', FILTER_UNSAFE_RAW);
   }
   require TEMPLATES_DIR.'/checkoutOverview.php';
+  */

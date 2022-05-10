@@ -1,5 +1,5 @@
 <?php
-
+/*All functions needed for orders to create, update, insert, delete or to get informations out of it */
 function createUserOrderInDB(int $userId, int $deliveryAddressId, array $cartItems):?int{
     logData("INFO","Delivery Id in function createOrder: ".$deliveryAddressId);
     $orderStatus = "NEW";

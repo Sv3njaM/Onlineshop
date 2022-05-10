@@ -1,4 +1,4 @@
-<!--All functions wich are needed for the productcs like get information, delete, change or create
+<!--All functionsneeded for the productcs like get information, delete, change or create
  a product and so on-->
 
  <?php

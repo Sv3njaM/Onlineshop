@@ -12,7 +12,7 @@ $_SESSION['isPost'] = $isPost;
 if($isPost){
   //username should not have special chars and get filtered
   $userName = filter_input(INPUT_POST,'username',FILTER_SANITIZE_SPECIAL_CHARS);
-  //no filter in password because special chars are welcome here
+  //no filter in password for special chars are welcome here
   $password = filter_input(INPUT_POST,'password');
   //check if username and password are set
   if(!(bool)$userName){

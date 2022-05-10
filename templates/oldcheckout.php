@@ -1,6 +1,4 @@
-<!--the card page shows all articles, amount, price and total price
-the user have added to the cart, the single products come from the
-cartItem.php wich is included here-->
+<!--not in use, checkoutOverview is used instead-->
 <!DOCTYPE html>
 <html lang="en">
   <head>

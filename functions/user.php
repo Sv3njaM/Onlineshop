@@ -1,4 +1,4 @@
-<!--All functions wich are needed to a user like get Userinformation, change or delete,
+<!--All functions needed to a user like get Userinformation, change or delete,
 registrate new user or check if informations are existing or matching-->
 <?php
 //get the current userId out of the SESSION['userId']

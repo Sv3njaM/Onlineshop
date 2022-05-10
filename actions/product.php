@@ -1,5 +1,3 @@
-<!--The Programming to get the informations/details about a product, starting when called
-in the routes.php-->
 <?php
 $headline = "Product Details";
 //gibe out the single parts. In part 3 (Array[2]) is the slug as product name

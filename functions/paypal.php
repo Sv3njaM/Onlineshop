@@ -1,5 +1,5 @@
 <?php
-
+/*Paypal functions not in use. Will be integrated later when payment is going to be added*/
 function getAccessToken():string{
 
   if(isset($_SESSION['paypalAccessToken']) &&

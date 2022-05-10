@@ -1,6 +1,6 @@
 <?php
 
-redirectIfNotLoggedIn('/deliveryAddress/add');
+redirectIfNotLoggedIn('/login');
   $userId = getCurrentUserId();
   $recipient = "";
   $city = "";
